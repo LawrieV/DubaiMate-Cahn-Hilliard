@@ -37,7 +37,7 @@ times = []
 masses = []
 energies = []
 
-num_steps = 10000
+num_steps = 10001
 
 print("Starte Simulation für Task 2...")
 
