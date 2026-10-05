@@ -7,7 +7,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Importiert eure Berechnungen aus Task 1
 import Task1.calculateConc as cc
 
 
