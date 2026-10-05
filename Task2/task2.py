@@ -30,25 +30,23 @@ def compute_energy(c):
 
 
 # Initialisierung der Simulation mit euren Parametern aus Task 1
-rng = np.random.default_rng(0)
-concentration = rng.uniform(-1, 1, size=(cc.N, cc.N))
+concentration = cc.create_concfield(cc.N)
 
 times = []
 masses = []
 energies = []
 
-num_steps = 10001
 
 print("Starte Simulation für Task 2...")
 
 # Hauptschleife: Nutzt cc.advance() für den Zeitschritt
-for step in range(num_steps + 1):
+for step in range(cc.nsteps + 1):
     t = step * cc.deltat
     times.append(t)
     masses.append(compute_mass(concentration))
     energies.append(compute_energy(concentration))
 
-    if step < num_steps:
+    if step < cc.nsteps:
         concentration = cc.advance(concentration)
 
 # Ordner für Plots erstellen und Diagramme speichern

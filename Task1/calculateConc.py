@@ -7,6 +7,7 @@ mobility = 1.0
 kappa = 1.0
 
 deltax = 1.0
+nsteps = 10000
 
 ############################## LAPLACIAN FUNCTION USED INITIALLY (TOO SLOW) ##############################
 
@@ -52,8 +53,14 @@ def advance(concentration):
     )
     return concentration + deltat * mobility * laplacian(chemical_potential)
 
-rng = np.random.default_rng(0)
-concentration = rng.uniform(-1, 1, size=(N, N))
+
+def create_concfield(n):
+    rng = np.random.default_rng(0)
+    concentration = rng.uniform(-1, 1, size=(n, n))
+    return concentration
+
+concentration = create_concfield(N)
+
 initial_mean = concentration.mean()
 
 ############################## SANITY CHECKS ##############################
@@ -71,7 +78,7 @@ initial_mean = concentration.mean()
 
 snapshots = [(0, concentration.copy())]
 
-for step in range(1, 10001):
+for step in range(1, nsteps + 1):
     concentration = advance(concentration)
 
     if step % 500 == 0:
