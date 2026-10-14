@@ -59,27 +59,18 @@ def create_concfield(n):
     concentration = rng.uniform(-1, 1, size=(n, n))
     return concentration
 
-concentration = create_concfield(N)
+def run_simulation():
+    concentration = create_concfield(N)
+    snapshots = [(0, concentration.copy())]
 
-initial_mean = concentration.mean()
+    for step in range(1, nsteps + 1):
+        concentration = advance(concentration)
 
-############################## SANITY CHECKS ##############################
+        if step % 500 == 0:
+            snapshots.append((step, concentration.copy()))
 
-#constant_field = np.ones((N, N))
-#assert np.allclose(laplacian(constant_field), 0)
+    return snapshots
 
 
-#for i in range(10):
-#    concentration = advance(concentration)
-
-#print("Mean concentration change:", concentration.mean() - initial_mean)
-
-############################## SANITY CHECKS ##############################
-
-snapshots = [(0, concentration.copy())]
-
-for step in range(1, nsteps + 1):
-    concentration = advance(concentration)
-
-    if step % 500 == 0:
-        snapshots.append((step, concentration.copy()))
+if __name__ == "__main__":
+    snapshots = run_simulation()
