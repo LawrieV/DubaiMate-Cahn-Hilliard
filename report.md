@@ -41,3 +41,37 @@ When writing the code for task 3, our first challenge was actually understanding
 ## Results (speed tests etc.)
 
 The beautiful part, where you report results, tables, files, or figures, after your code was able to run. 
+
+### Task 4:
+
+#### Asymmetric double well
+
+We used the free-energy density
+
+$$f(c)=\frac{(c^2-1)^2}{4}+\alpha c,$$
+
+whose derivative is $f'(c)=c^3-c+\alpha$. The simulations use $N=128$, $M=1$,
+$\kappa=1$, $\Delta t=0.01$, and the same reproducible random initial field
+uniformly distributed between $-1$ and $1$ for each parameter value. We
+compared $\alpha=0$, $\alpha=0.5$, and $\alpha=1$ through 10,000 time steps.
+
+##### $\alpha=0$:
+
+![Initial concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0/conc_snapshot_0.png)
+![Final concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0/conc_snapshot_10000.png)
+
+##### $\alpha=0.5$:
+
+![Initial concentration, alpha=0.5](Task4/Snapshots/AsymmDoubleWell/alpha_0.5/conc_snapshot_0.png)
+![Final concentration, alpha=0.5](Task4/Snapshots/AsymmDoubleWell/alpha_0.5/conc_snapshot_10000.png)
+
+##### $\alpha=1$:
+
+![Initial concentration, alpha=1](Task4/Snapshots/AsymmDoubleWell/alpha_1/conc_snapshot_0.png)
+![Final concentration, alpha=1](Task4/Snapshots/AsymmDoubleWell/alpha_1/conc_snapshot_10000.png)
+
+The concentration patterns are identical for these parameter values. In the
+conserved Cahn–Hilliard equation, $\alpha$ contributes the spatially constant
+term $\alpha$ to the chemical potential. The evolution takes the Laplacian of
+the chemical potential, and the Laplacian of a constant is zero. This means the linear tilt does not change the concentration evolution for a fixed
+initial field and conserved mean concentration.
