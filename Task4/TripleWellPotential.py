@@ -38,7 +38,7 @@ def advance(concentration):
 
 def create_concfield(n):
     rng = np.random.default_rng(0)
-    concentration = rng.uniform(-1, 1, size=(n, n))
+    concentration = rng.uniform(0.45, 0.55, size=(n, n))
     return concentration
 
 def run_simulation():
@@ -70,7 +70,7 @@ def save_initial_and_final_snapshots(snapshots):
         plt.imshow(concentration, cmap="RdBu", vmin=-1, vmax=1)
         plt.title(f"Concentration at step {step}")
         plt.colorbar(label="Concentration (c)")
-        plt.savefig(output_dir / f"conc_snapshot_{step}.png", bbox_inches="tight")
+        plt.savefig(output_dir / f"conc_snapshot_between{step}.png", bbox_inches="tight")
         plt.close()
 
 
