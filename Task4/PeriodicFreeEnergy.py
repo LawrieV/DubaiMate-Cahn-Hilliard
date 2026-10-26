@@ -59,7 +59,6 @@ def save_initial_and_final_snapshots(alpha, snapshots):
         Path(__file__).parent
         / "Snapshots"
         / "PeriodicFreeEnergy"
-        / f"alpha_{alpha:g}"
     )
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -73,4 +72,5 @@ def save_initial_and_final_snapshots(alpha, snapshots):
 
 
 if __name__ == "__main__":
-    save_initial_and_final_snapshots(alpha, run_simulation(alpha))
+    for alpha in alpha_values:
+        save_initial_and_final_snapshots(alpha, run_simulation(alpha))
