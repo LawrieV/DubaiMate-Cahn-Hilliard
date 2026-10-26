@@ -59,7 +59,6 @@ def save_initial_and_final_snapshots(alpha, snapshots):
         Path(__file__).parent
         / "Snapshots"
         / "NonConvex"
-        / f"alpha_{alpha:g}"
     )
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -73,5 +72,4 @@ def save_initial_and_final_snapshots(alpha, snapshots):
 
 
 if __name__ == "__main__":
-    for alpha in alpha:
-        save_initial_and_final_snapshots(alpha, run_simulation(alpha))
+    save_initial_and_final_snapshots(alpha, run_simulation(alpha))
