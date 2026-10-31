@@ -7,7 +7,7 @@ N = 128
 deltat = 0.01
 mobility = 1.0
 kappa = 1.0
-alpha_values = (0.0, 0.5, 1.0)
+alpha_values = (0.0, 0.1, 0.25, 0.5, 1.0)
 
 deltax = 1.0
 nsteps = 10000
@@ -30,7 +30,7 @@ def laplacian(field):
 def advance(concentration, alpha):
     """Calculate the concentration field one time step later."""
     chemical_potential = (
-        concentration**3 - concentration + alpha
+        concentration**3 - concentration + 3*alpha*concentration**2
         - kappa * laplacian(concentration)
     )
     return concentration + deltat * mobility * laplacian(chemical_potential)
@@ -65,7 +65,7 @@ def save_initial_and_final_snapshots(alpha, snapshots):
 
     for step, concentration in (snapshots[0], snapshots[-1]):
         plt.figure()
-        plt.imshow(concentration, cmap="RdBu", vmin=-1, vmax=1)
+        plt.imshow(concentration, cmap="RdBu", vmin=-3.5, vmax=1)
         plt.title(f"Concentration at step {step} (alpha={alpha:g})")
         plt.colorbar(label="Concentration (c)")
         plt.savefig(output_dir / f"conc_snapshot_{step}.png", bbox_inches="tight")
