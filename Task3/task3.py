@@ -43,11 +43,13 @@ def characteristic_length(concentration):
     return 2 * np.pi / k_max #calculating characteristic length 
 
 
+N=256
+
 # initialize concentration and run the simulation
-concentration = cc.create_concfield(cc.N)
+concentration = cc.create_concfield(N)
 
 start_step = cc.nsteps
-end_step = 100 * cc.nsteps       # 100,000 Schritte insgesamt
+end_step = 10 * cc.nsteps       # 100,000 Schritte insgesamt
 sample_every = 500
 
 time = []
