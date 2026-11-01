@@ -3,7 +3,9 @@ Group report
 # Cahn-Hilliard model
 
 Describe the task in your own words, and/or link to the task description. 
-(Test gaggi meier)
+
+The Cahn-Hilliard model is a model, which describes the process of phase separation in binary mixtures.
+Its main idea is that a material will not separate instantly, but small composition fluctuations will grow that produce domains which grow larger.
 
 ## Layout of the algorithm, functions to be created
 
