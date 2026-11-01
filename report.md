@@ -38,6 +38,8 @@ In task 2.........
 
 When writing the code for task 3, our first challenge was actually understanding how to implement what is asked of us. For this, we first tried to understand every aspect of the theory behind the task, i.e. understanding how we can go from the fourier transformed concentration field to the *k~MAX~*. This took quite a while to figure out, but eventually we did. Then it was much easier to also implement the task into python code. The next problem we had was that it took too long to compute the charcteristic lengthscale for t>100. Here we managed to cut down the time slightly by removing unnecessary calls of certain functions that we overlooked. A third problem was finding the values for *A* and *alpha*. This was becasue our *L(t)*  function just consited mostly of plateaus, making it hard to fit a linear plot to them.
 
+For task four the different subtasks were divided in the group, where first a general code was created for the Asymmetric double well, which was then used for the other codes and slightly altered. Most of the subtasks went smoothly and there was no bigger problem except with the triple well potential. Here one of the main problems that arose were the results themselves. The graph that was created after 10000 steps always turned out to be completely white and never either red or blue, which suggested that some of the code might be faulty. After checking the math and the code with the professor it was tested if a different concentration distribution would change the graphs colors. This turned out to be true as changing the parameter to smaller distributions resulted in the graph after 10000 steps being mostly red or blue depending on the concentration region.
+
 ## Results (speed tests etc.)
 
 The beautiful part, where you report results, tables, files, or figures, after your code was able to run. 
@@ -48,7 +50,8 @@ The beautiful part, where you report results, tables, files, or figures, after y
 
 We used the free-energy density
 
-$$f(c)=\frac{(c^2-1)^2}{4}+\alpha c,$$
+
+$f(c)=\frac{(c^2-1)^2}{4}+\alpha c,$$
 
 whose derivative is $f'(c)=c^3-c+\alpha$. The simulations use $N=128$, $M=1$,
 $\kappa=1$, $\Delta t=0.01$, and the same reproducible random initial field
@@ -75,3 +78,30 @@ conserved Cahn–Hilliard equation, $\alpha$ contributes the spatially constant
 term $\alpha$ to the chemical potential. The evolution takes the Laplacian of
 the chemical potential, and the Laplacian of a constant is zero. This means the linear tilt does not change the concentration evolution for a fixed
 initial field and conserved mean concentration.
+
+
+#### Triple well potential
+
+For this task we used the function: 
+
+$$f(c)=(c+1)^2 c^2(c-1)^2$$
+
+which does not have a paramter. The derivative of this function turned out to be: $f'(c)=6c^5 - 8c^3 + 2c $. The simulations were done with 0 and 10000 steps. In total three simulations were done. The first one keeping the random concentration distribution in the range of -1.5 to 1.5 as used in other examples. The second simulation uses a distribution between -0.55 to -0.45 and the last simulation was between 0.45 to 0.55.
+
+##### Distribution between -1.5 to 1.5:
+
+![Distribution between -1.5 to 1.5, for 0 steps](Task4/Snapshots/TripleWellPotential/conc_snapshot_0.png)
+![Distribution between -1.5 to 1.5, for 10000 steps](Task4/Snapshots/TripleWellPotential/conc_snapshot_10000.png)
+
+##### Distribution between -0.55 to -0.45:
+
+![Distribution between -0.55 to -0.45, for 0 steps](Task4/Snapshots/TripleWellPotential/conc_snapshot_between-0.55to-0.450.png)
+![Distribution between -1.5 to 1.5, for 10000 steps](Task4/Snapshots/TripleWellPotential/conc_snapshot_between-0.55to-0.4510000.png)
+
+##### Distribution between 0.45 to 0.55:
+
+![Distribution between 0.45 to 0.55, for 0 steps](Task4/Snapshots/TripleWellPotential/conc_snapshot_between0.55to0.450.png)
+![Distribution between 0.45 to 0.55, for 10000 steps](Task4/Snapshots/TripleWellPotential/conc_snapshot_between0.55to0.4510000.png)
+
+
+It is visible that for the smaller concentrations in either the positive or negative regime it concentrates into either only red and white or only blue and white. This makes it evident that there should be three wells within the system but also with the example of the distribution from -1.5 to 1.5 we see that the well of the white distribution has to be the global minimum as it always turns white with a bigger distribution.
