@@ -5,15 +5,24 @@ Group report
 Describe the task in your own words, and/or link to the task description. 
 
 The Cahn-Hilliard model is a model, which describes the process of phase separation in binary mixtures.
-Its main idea is that a material will not separate instantly, but small composition fluctuations will grow that produce domains which grow larger.
+Its main idea is that a material will not separate instantly, but small composition fluctuations will grow that produce domains which grow larger. This idea is important in material science as it can influence microstructure, mechanical properties as well as phase stability.
+
+All in all this model was divided into four tasks with the first one simulating phase separation and then in the second checking if the simulation obeys mass conservation and free energy disipation.
+In the third task the domain growth was measured by quantifying how the characteristic size of the separated domoains increase over time. Lastly in the fourth task five different energy models were investigated to see how free energy functions influence phase separation and its resulting structure.
 
 ## Layout of the algorithm, functions to be created
 
 Name the most important functions and mention their functionality, i.e., input and output.
 
-      def myroutine(var1,var2):
-          # does the following ...
-          return ...
+In the first task as well in the tasks that follow one of the most important function was the "advance" function. As this was always used to calculate the concentration field in tasks 1 and 4. It calculates the chemical potential by the given formula and  given concentration and returns the concentration + delta t times mobility and times the laplacian of the chemical potential.
+
+def advance(concentration):
+    """Calculate the concentration field one time step later."""
+    chemical_potential = (
+        concentration**3 - concentration
+        - kappa * laplacian(concentration)
+    )
+    return concentration + deltat * mobility * laplacian(chemical_potential)
 
 ## How to run the code
 
@@ -21,8 +30,9 @@ Mention, how to run the code. Mention the parameters, in case your code has comm
 
       python3 mycode.py
       python3 mycode,py arg1 arg2 
-
 where arg1 and arg2 are ...
+
+
 
 ## Resulting files
 
