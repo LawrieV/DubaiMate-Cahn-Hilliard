@@ -67,13 +67,23 @@ $f(c)=\frac{(c^2-1)^2}{4}+\alpha c,$$
 
 whose derivative is $f'(c)=c^3-c+\alpha$. The simulations use $N=128$, $M=1$,
 $\kappa=1$, $\Delta t=0.01$, and the same reproducible random initial field
-uniformly distributed between $-1$ and $1$ for each parameter value. We
-compared $\alpha=0$, $\alpha=0.5$, and $\alpha=1$ through 10,000 time steps.
+uniformly distributed between $-3.5$ and $1$ for each parameter value. We
+compared $\alpha=0$, $\alpha=0.1$, $\alpha=0.25$, $\alpha=0.5$, and $\alpha=1$ through 10,000 time steps.
 
 ##### $\alpha=0$:
 
 ![Initial concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0/conc_snapshot_0.png)
 ![Final concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0/conc_snapshot_10000.png)
+
+##### $\alpha=0.1$:
+
+![Initial concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0.1/conc_snapshot_0.png)
+![Final concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0.1/conc_snapshot_10000.png)
+
+##### $\alpha=0.25$:
+
+![Initial concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0.25/conc_snapshot_0.png)
+![Final concentration, alpha=0](Task4/Snapshots/AsymmDoubleWell/alpha_0.25/conc_snapshot_10000.png)
 
 ##### $\alpha=0.5$:
 
