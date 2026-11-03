@@ -54,7 +54,32 @@ For task four the different subtasks were divided in the group, where first a ge
 
 ## Results (speed tests etc.)
 
-The beautiful part, where you report results, tables, files, or figures, after your code was able to run. 
+### Task 1:
+
+Following the steps in the task and using the double-well free energy function
+
+$$f(c)=(c^2-1)^2/4$$
+
+We simulated the change of the concentration profile, here at timestep 0, 2500, 5000, 7500 and 10000:
+
+![Concentration at timestep 0](Task1/Snapshots/conc_snapshot_0.png)
+![Concentration at timestep 2500](Task1/Snapshots/conc_snapshot_2500.png)
+![Concentration at timestep 5000](Task1/Snapshots/conc_snapshot_5000.png)
+![Concentration at timestep 7500](Task1/Snapshots/conc_snapshot_7500.png)
+![Concentration at timestep 10000](Task1/Snapshots/conc_snapshot_10000.png)
+
+
+
+
+
+### Task 2:
+
+
+
+### Task 3:
+
+
+
 
 ### Task 4:
 
@@ -62,8 +87,7 @@ The beautiful part, where you report results, tables, files, or figures, after y
 
 We used the free-energy density
 
-
-$f(c)=\frac{(c^2-1)^2}{4}+\alpha c,$$
+$f(c)=\frac{(c^2-1)^2}{4}+\alpha*c^3 c,$$
 
 whose derivative is $f'(c)=c^3-c+3*\alpha*c^2$. The simulations use $N=128$, $M=1$,
 $\kappa=1$, $\Delta t=0.01$, and the same reproducible random initial field
@@ -95,11 +119,24 @@ compared $\alpha=0$, $\alpha=0.1$, $\alpha=0.25$, $\alpha=0.5$, and $\alpha=1$ t
 ![Initial concentration, alpha=1](Task4/Snapshots/AsymmDoubleWell/alpha_1/conc_snapshot_0.png)
 ![Final concentration, alpha=1](Task4/Snapshots/AsymmDoubleWell/alpha_1/conc_snapshot_10000.png)
 
-The concentration patterns are identical for these parameter values. In the
-conserved Cahn–Hilliard equation, $\alpha$ contributes the spatially constant
-term $\alpha$ to the chemical potential. The evolution takes the Laplacian of
-the chemical potential, and the Laplacian of a constant is zero. This means the linear tilt does not change the concentration evolution for a fixed
-initial field and conserved mean concentration.
+When comparing the concentration patterns for different $\alpha$ with the functions as seen in the following figure, one can see that the concentration splits into two wells, that are given by the minima of the functions.
+
+![Plots of function of all alpha](Task4/Snapshots/AsymmDoubleWell/plots.png)
+
+The only result where we arent too sure what is happening is the one for $\alpha=1$. Since in the concentration snapshot after 10000 timesteps it looks like that a lot of the concentration is at $c=1$, which wouldnt be correct, since the function has non minima there.
+
+#### Flory Huggins free energy for polymers
+
+For this task we used the function: 
+
+$$f(c) = c \ln(c) + (1-c)\ln(1-c) + \chi c(1-c)$$
+
+which has $\chi=2.5$ as a parameter. The derivative of this function turned out to be: $f'(c)=\log(c) - \log(1 - c) + \chi*(1 - 2*c)$. The simulations were done with 0 and 10000 steps. The random concentration distribution to initiate the simulation was set between $0.45$ to $0.55$. This is due to the fact that we didn't want the concentration value to leave the range of $0$ to $1$, otherwise the logarithms would be undefined. The resulting initial and final concentration was:
+
+![Initial concentration, chi=2.5](Task4/Snapshots/FloryHuggins/alpha_2.5/conc_snapshot_0.png)
+![Final concentration, chi=2.5](Task4/Snapshots/FloryHuggins/alpha_2.5/conc_snapshot_10000.png)
+
+This fits, as the function has a double well structure with minima at a relative concentration of around $0.14$ and $0.86$
 
 
 #### Triple well potential
@@ -108,7 +145,7 @@ For this task we used the function:
 
 $$f(c)=(c+1)^2 c^2(c-1)^2$$
 
-which does not have a paramter. The derivative of this function turned out to be: $f'(c)=6c^5 - 8c^3 + 2c $. The simulations were done with 0 and 10000 steps. In total three simulations were done. The first one keeping the random concentration distribution in the range of -1.5 to 1.5 as used in other examples. The second simulation uses a distribution between -0.55 to -0.45 and the last simulation was between 0.45 to 0.55.
+which does not have a parameter. The derivative of this function turned out to be: $f'(c)=6c^5 - 8c^3 + 2c $. The simulations were done with 0 and 10000 steps. In total three simulations were done. The first one keeping the random concentration distribution in the range of $-1.5$ to $1.5$ as used in other examples. The second simulation uses a distribution between $-0.55$ to $-0.45$ and the last simulation was between $0.45$ to $0.55$.
 
 ##### Distribution between -1.5 to 1.5:
 
@@ -127,3 +164,13 @@ which does not have a paramter. The derivative of this function turned out to be
 
 
 It is visible that for the smaller concentrations in either the positive or negative regime it concentrates into either only red and white or only blue and white. This makes it evident that there should be three wells within the system but also with the example of the distribution from -1.5 to 1.5 we see that the well of the white distribution has to be the global minimum as it always turns white with a bigger distribution.
+
+
+#### Non-convex + external field
+
+
+
+
+#### Periodic free energy (mathematically interesting)
+
+
