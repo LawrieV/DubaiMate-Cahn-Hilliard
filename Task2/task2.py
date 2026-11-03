@@ -55,16 +55,16 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
 # Plot 1: Massenerhaltung
 ax1.plot(times, masses, color="blue", linewidth=1.5)
-ax1.set_xlabel("Zeit t")
-ax1.set_ylabel("Gesamtmasse m(t)")
-ax1.set_title("Massenerhaltung")
+ax1.set_xlabel("Time t")
+ax1.set_ylabel("Total mass m(t)")
+ax1.set_title("Mass conservation")
 ax1.grid(True)
 
 # Plot 2: Energiedissipation
 ax2.plot(times, energies, color="red", linewidth=1.5)
-ax2.set_xlabel("Zeit t")
-ax2.set_ylabel("Freie Energie F(t)")
-ax2.set_title("Energie-Dissipation")
+ax2.set_xlabel("Time t")
+ax2.set_ylabel("Free energy F(t)")
+ax2.set_title("Energy Dissipation")
 ax2.grid(True)
 
 plt.tight_layout()
