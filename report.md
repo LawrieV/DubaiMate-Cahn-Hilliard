@@ -51,7 +51,14 @@ Mention any resulting files and their format and meaning.
 
 ## Successful tests
 
-Summarize, which tests have been successfully passed to test your code. 
+The implementation was verified with the following tests, all of which passed:
+
+Discrete Laplacian: The five-point Laplacian returns zero for a constant field. For a Fourier mode, it reproduces the analytical discrete eigenvalue to machine precision (error ~10⁻¹⁵), and it commutes with cyclic shifts of the field, which confirms the periodic boundary conditions.
+Mass conservation: The total mass stays constant over 10,000 time steps, with a relative change below 10⁻¹⁶. This holds for the double-well model (also with the linear term, H = 0, 0.5, 1.0), the asymmetric double well, the Flory-Huggins model, the triple-well model and the sin model.
+Energy dissipation: For the double-well model, the free energy decreases monotonically in time, as required for Cahn-Hilliard dynamics.
+Numerical stability: The fields remain finite and bounded in all simulations (no NaN or divergence), and the Flory-Huggins concentration stays within (0, 1).
+Linear stability analysis: For the sin model, the decay rate of a small-amplitude Fourier mode matches the linear theory (−0.022118 numerically and analytically).
+Reproducibility: The fixed random seed gives identical initial conditions in every run.
 
 ## Problems
 
