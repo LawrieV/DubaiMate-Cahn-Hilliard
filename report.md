@@ -107,6 +107,19 @@ In the figure one can also see a fitted curve. This gave us the growth exponent 
 
 ### Task 4:
 
+#### Non convex + external field
+Starting from random noise in [-1, 1], all simulations undergo spinodal decomposition within 10,000 time steps. The field separates into domains of the two phases c ≈ +1 and c ≈ −1, and the mean concentration is conserved (⟨c⟩ ≈ 0.003). The domains are still coarsening at the final step, so equilibrium has not been reached.
+
+For H = 0, the microstructure is statistically isotropic. For H > 0, the linear term in the chemical potential favors the c = +1 phase on the left (small x) and the c = −1 phase on the right (large x). This bias grows with H. The mean concentration in the leftmost / rightmost 32 columns is 0.09 / −0.07 for H = 0.1, 0.17 / −0.15 for H = 0.25, 0.24 / −0.21 for H = 0.5, and 0.33 / −0.31 for H = 1.0, compared to 0.03 / −0.01 at H = 0. The field extremes also shift beyond ±1 (about ±1.14 for H = 1.0, versus ±1.03 for H = 0).
+
+Overall, a weak linear field does not suppress phase separation but biases it spatially, and the asymmetry increases roughly linearly with H in the range studied.
+
+Falls du die Colorbar vmin=-3.5 nicht bewusst gewählt hast: Die Werte liegen nur in etwa [-1.14, 1.04], die Bilder wirken dadurch kontrastarm.
+
+#### Periodic free energy
+With the periodic free-energy derivative f′(c) = sin(c), no phase separation occurs. The free-energy curvature f″(c) = cos(c) is positive for all |c| < π/2. The initial noise in [-1, 1] lies entirely in this stable region, so the dynamics are purely diffusive and the field relaxes toward the uniform state. The mean concentration is conserved (⟨c⟩ = 0.0034), while the standard deviation falls from 0.58 initially to 0.045 after 500 steps and 0.013 after 10,000 steps. At the final step, all values lie within [-0.022, 0.031], so the snapshot is essentially homogeneous. The decay continues without saturating, as the remaining fluctuations are smoothed out. Spinodal decomposition would require initial values with |c| > π/2 ≈ 1.57, where cos(c) < 0.
+
+
 #### Asymmetric double well
 
 We used the free-energy density
