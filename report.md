@@ -12,17 +12,45 @@ In the third task the domain growth was measured by quantifying how the characte
 
 ## Layout of the algorithm, functions to be created
 
-Name the most important functions and mention their functionality, i.e., input and output.
+In the first task as well in the tasks that follow one of the most important function was the *advance* function. As this was always used to calculate the concentration field in tasks 1 and 4. It calculates the chemical potential by the given formula and  given concentration and returns the concentration + delta t times mobility and times the laplacian of the chemical potential.
 
-In the first task as well in the tasks that follow one of the most important function was the "advance" function. As this was always used to calculate the concentration field in tasks 1 and 4. It calculates the chemical potential by the given formula and  given concentration and returns the concentration + delta t times mobility and times the laplacian of the chemical potential.
+    def advance(concentration):
+        %Calculates the concentration field one time step later
+        return concentration + deltat * mobility * laplacian(chemical_potential)
 
-def advance(concentration):
-    """Calculate the concentration field one time step later."""
-    chemical_potential = (
-        concentration**3 - concentration
-        - kappa * laplacian(concentration)
-    )
-    return concentration + deltat * mobility * laplacian(chemical_potential)
+Another very important function was the function that created the concentration field in the first place, *create_concfield*. This was used in task 1 and modified for some of the tasks in task 4. 
+
+    def create_concfield(n):
+        %This takes a size of an array and returns a concentration field of said size.
+        return concentration
+
+In Task 2, the most important functions are the *compute_mass* and *compute_energy* functions. As their names say, they compute the mass and energy respectively of the system at a single point in time
+
+    def compute_mass(c):
+        %computes the mass of the system
+        return np.sum(c) * (cc.deltax**2)
+
+
+    def compute_energy(c):
+        %computes the total free energy of the system
+        return np.sum(f_c + 0.5 * cc.kappa * grad_sq) * (cc.deltax**2)
+
+Finally, in Task 3, the most important functions are *structure_factor*, *dominant_wavenumber* and *characteristic_length*. These are all linked together, and in the end return the characteristic length scale present in the formed concentration pattern. 
+
+    def structure_factor(concentration):
+        %calculates and returns the structure factor
+        return ks, s_radial
+
+ 
+
+    def dominant_wavenumber(concentration):
+        %uses the structure factor to calculate the maximal wavenumber
+        return ks[np.argmax(s_radial)]
+
+
+    def characteristic_length(concentration):
+        %uses the maximal wavenumber to calculate and return the characteristic length
+        return 2 * np.pi / k_max
 
 ## How to run the code
 
@@ -114,19 +142,6 @@ In the figure one can also see a fitted curve. This gave us the growth exponent 
 
 ### Task 4:
 
-#### Non convex + external field
-Starting from random noise in [-1, 1], all simulations undergo spinodal decomposition within 10,000 time steps. The field separates into domains of the two phases c ≈ +1 and c ≈ −1, and the mean concentration is conserved (⟨c⟩ ≈ 0.003). The domains are still coarsening at the final step, so equilibrium has not been reached.
-
-For H = 0, the microstructure is statistically isotropic. For H > 0, the linear term in the chemical potential favors the c = +1 phase on the left (small x) and the c = −1 phase on the right (large x). This bias grows with H. The mean concentration in the leftmost / rightmost 32 columns is 0.09 / −0.07 for H = 0.1, 0.17 / −0.15 for H = 0.25, 0.24 / −0.21 for H = 0.5, and 0.33 / −0.31 for H = 1.0, compared to 0.03 / −0.01 at H = 0. The field extremes also shift beyond ±1 (about ±1.14 for H = 1.0, versus ±1.03 for H = 0).
-
-Overall, a weak linear field does not suppress phase separation but biases it spatially, and the asymmetry increases roughly linearly with H in the range studied.
-
-Falls du die Colorbar vmin=-3.5 nicht bewusst gewählt hast: Die Werte liegen nur in etwa [-1.14, 1.04], die Bilder wirken dadurch kontrastarm.
-
-#### Periodic free energy
-With the periodic free-energy derivative f′(c) = sin(c), no phase separation occurs. The free-energy curvature f″(c) = cos(c) is positive for all |c| < π/2. The initial noise in [-1, 1] lies entirely in this stable region, so the dynamics are purely diffusive and the field relaxes toward the uniform state. The mean concentration is conserved (⟨c⟩ = 0.0034), while the standard deviation falls from 0.58 initially to 0.045 after 500 steps and 0.013 after 10,000 steps. At the final step, all values lie within [-0.022, 0.031], so the snapshot is essentially homogeneous. The decay continues without saturating, as the remaining fluctuations are smoothed out. Spinodal decomposition would require initial values with |c| > π/2 ≈ 1.57, where cos(c) < 0.
-
-
 #### Asymmetric double well
 
 We used the free-energy density
@@ -207,11 +222,15 @@ which does not have a parameter. The derivative of this function turned out to b
 It is visible that for the smaller concentrations in either the positive or negative regime it concentrates into either only red and white or only blue and white. This makes it evident that there should be three wells within the system but also with the example of the distribution from -1.5 to 1.5 we see that the well of the white distribution has to be the global minimum as it always turns white with a bigger distribution.
 
 
-#### Non-convex + external field
+#### Non convex + external field
+Starting from random noise in [-1, 1], all simulations undergo spinodal decomposition within 10,000 time steps. The field separates into domains of the two phases c ≈ +1 and c ≈ −1, and the mean concentration is conserved (⟨c⟩ ≈ 0.003). The domains are still coarsening at the final step, so equilibrium has not been reached.
 
+For H = 0, the microstructure is statistically isotropic. For H > 0, the linear term in the chemical potential favors the c = +1 phase on the left (small x) and the c = −1 phase on the right (large x). This bias grows with H. The mean concentration in the leftmost / rightmost 32 columns is 0.09 / −0.07 for H = 0.1, 0.17 / −0.15 for H = 0.25, 0.24 / −0.21 for H = 0.5, and 0.33 / −0.31 for H = 1.0, compared to 0.03 / −0.01 at H = 0. The field extremes also shift beyond ±1 (about ±1.14 for H = 1.0, versus ±1.03 for H = 0).
 
+Overall, a weak linear field does not suppress phase separation but biases it spatially, and the asymmetry increases roughly linearly with H in the range studied.
 
+Falls du die Colorbar vmin=-3.5 nicht bewusst gewählt hast: Die Werte liegen nur in etwa [-1.14, 1.04], die Bilder wirken dadurch kontrastarm.
 
 #### Periodic free energy
-
+With the periodic free-energy derivative f′(c) = sin(c), no phase separation occurs. The free-energy curvature f″(c) = cos(c) is positive for all |c| < π/2. The initial noise in [-1, 1] lies entirely in this stable region, so the dynamics are purely diffusive and the field relaxes toward the uniform state. The mean concentration is conserved (⟨c⟩ = 0.0034), while the standard deviation falls from 0.58 initially to 0.045 after 500 steps and 0.013 after 10,000 steps. At the final step, all values lie within [-0.022, 0.031], so the snapshot is essentially homogeneous. The decay continues without saturating, as the remaining fluctuations are smoothed out. Spinodal decomposition would require initial values with |c| > π/2 ≈ 1.57, where cos(c) < 0.
 
