@@ -231,6 +231,12 @@ Overall, a weak linear field does not suppress phase separation but biases it sp
 
 Falls du die Colorbar vmin=-3.5 nicht bewusst gewählt hast: Die Werte liegen nur in etwa [-1.14, 1.04], die Bilder wirken dadurch kontrastarm.
 
+![Non convex + external field](Task4\Snapshots\NonConvex\conc_snapshot_10000.png)
+
 #### Periodic free energy
 With the periodic free-energy derivative f′(c) = sin(c), no phase separation occurs. The free-energy curvature f″(c) = cos(c) is positive for all |c| < π/2. The initial noise in [-1, 1] lies entirely in this stable region, so the dynamics are purely diffusive and the field relaxes toward the uniform state. The mean concentration is conserved (⟨c⟩ = 0.0034), while the standard deviation falls from 0.58 initially to 0.045 after 500 steps and 0.013 after 10,000 steps. At the final step, all values lie within [-0.022, 0.031], so the snapshot is essentially homogeneous. The decay continues without saturating, as the remaining fluctuations are smoothed out. Spinodal decomposition would require initial values with |c| > π/2 ≈ 1.57, where cos(c) < 0.
 
+![Periodic free energy, 0 steps](Task4\Snapshots\PeriodicFreeEnergy\conc_snapshot_0.png)
+![Periodic free energy, 10000 steps](Task4\Snapshots\PeriodicFreeEnergy\conc_snapshot_10000.png)
+![Periodic free energy, 0 steps, startvaue around pi](Task4\Snapshots\PeriodicFreeEnergy\conc_snapshotaroundpi_0.png)
+![Periodic free energy, 10000 steps, start value around pi](Task4\Snapshots\PeriodicFreeEnergy\conc_snapshotaroundpi_10000.png)
